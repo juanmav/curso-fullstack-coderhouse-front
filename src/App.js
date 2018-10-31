@@ -7,14 +7,24 @@ import { BrowserRouter , Route } from 'react-router-dom';
 
 class App extends Component {
     render() {
+        let token = localStorage.getItem('token');
+
         return (
             <div className="App">
 
                 <BrowserRouter>
-                    <div>
-                        <Route exact path={'/list'} component={Lists} />
-                        <Route exact path={'/'} component={Login}/>
-                    </div>
+                    {
+                        token ?
+                            <div>
+                                <Route exact path={'/'} component={Lists} />
+                            </div>
+                            :
+                            <div>
+                                <Login/>
+                            </div>
+                    }
+
+
                 </BrowserRouter>
 
             </div>

@@ -10,7 +10,14 @@ class Lists extends React.Component {
     }
 
     componentDidMount(){
-        fetch('http://localhost:3000/api/v1/lists/')
+        let token = localStorage.getItem('token');
+        console.log(token);
+        fetch('http://localhost:3000/api/v1/lists/', {
+            method: 'GET',
+            headers: {
+                token
+            }
+        })
             .then(response => response.json())
             .then( lists => {
                 console.log(lists);
